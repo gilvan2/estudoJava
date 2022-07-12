@@ -94,14 +94,10 @@ public class Lambidas {
 		palavras.forEach(impressor);
 		
 		Consumer<String> impressor2 = System.out::println;
-		palavras.forEach(impressor2);
+		
+		palavras.forEach(System.out::println);
 		
 		//Os blocos anteriores fazem exatamente a mesma coisa, uma com lâmbida e outro com Method Reference
-		
-		
-		
-		
-		
 		
 		
 		/*As evoluções dessa classe vieram da classe OrdenarStrings*/
