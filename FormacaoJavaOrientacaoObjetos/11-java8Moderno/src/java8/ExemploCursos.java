@@ -111,8 +111,10 @@ public class ExemploCursos {
 		cursos.stream().mapToInt(c -> c.getAlunos())
 		.average();
 		
+		//Como podemos transformar esse Stream<Curso> filtrado em uma List<Curso>?
+		List<Cursos> lista = cursos.stream().filter(c -> c.getAlunos() > 50).collect(Collectors.toList());
 		
-		List<Cursos> lista = cursos.stream().filter(c -> c.getAlunos() >= 100).collect(Collectors.toList());
+		//Nesse curso tem a API de datas também, esta no módulo 6
 		
 		
 	}
