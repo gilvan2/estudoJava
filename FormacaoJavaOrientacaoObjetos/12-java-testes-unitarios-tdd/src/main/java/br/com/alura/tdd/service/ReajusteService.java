@@ -9,15 +9,21 @@ public class ReajusteService {
 
 	public void concederReajuste(Funcionario funcionario, Desempenho desempenho) {
 		
-		BigDecimal reajuste = null;
-		
-		if(desempenho == Desempenho.A_DESEJAR) {
-			reajuste = funcionario.getSalario().multiply(new BigDecimal("0.03"));
-		}else if(desempenho == Desempenho.BOM){
-			reajuste = funcionario.getSalario().multiply(new BigDecimal("0.15"));
-		}else if(desempenho == Desempenho.OTIMO){
-			reajuste = funcionario.getSalario().multiply(new BigDecimal("0.20"));
-		}
+		BigDecimal percentual = desempenho.percentualReajuste();
+		BigDecimal reajuste = funcionario.getSalario().multiply(percentual);
 		funcionario.reajustarSalario(reajuste);
 	}
 }
+/*
+ * Os antigos 		
+ * 		if(desempenho == Desempenho.A_DESEJAR) {
+			reajuste = funcionario.getSalario().multiply();
+		}else if(desempenho == Desempenho.BOM){
+			reajuste = funcionario.getSalario().multiply();
+		}else if(desempenho == Desempenho.OTIMO){
+			reajuste = funcionario.getSalario().multiply();
+		}
+ * 
+ * Foram substituídos pela metodo percentualReajuste no ENUM, assim cada novo tipo de desenpenho será implementado no ENUM
+ * 
+ * */
