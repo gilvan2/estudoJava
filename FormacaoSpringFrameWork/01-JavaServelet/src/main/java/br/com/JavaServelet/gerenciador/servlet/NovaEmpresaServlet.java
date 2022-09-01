@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class NovaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void dopost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cnpj = request.getParameter("cnpj");
 		System.out.println("Cadastrando no empresa");
@@ -30,5 +30,7 @@ public class NovaEmpresaServlet extends HttpServlet {
  * Servelet criado pelo wizard do eclipse
  * 
  * Passagem de parametros pela url exemplo -> http://localhost:8080/gerenciador/novaEmpresa?nome=Alura&cnpj=1234n
+ * 
+ * doPost -> Só aceita requisições do tipo post 
  * 
  * */
