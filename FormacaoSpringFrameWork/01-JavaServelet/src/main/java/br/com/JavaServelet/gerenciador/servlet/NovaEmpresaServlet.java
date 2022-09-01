@@ -27,7 +27,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 
 }
 /*
- * Servelet criado pelo wizar do eclipse
+ * Servelet criado pelo wizard do eclipse
  * 
  * Passagem de parametros pela url exemplo -> http://localhost:8080/gerenciador/novaEmpresa?nome=Alura&cnpj=1234n
  * 

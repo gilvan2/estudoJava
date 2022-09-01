@@ -24,3 +24,5 @@ hs_err_pid*
 
 # especific files
 FormacaoJavaOrientacaoObjetos/.project
+
+*.project
