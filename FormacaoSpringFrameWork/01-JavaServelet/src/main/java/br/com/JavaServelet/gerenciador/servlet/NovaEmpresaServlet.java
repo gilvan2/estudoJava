@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class NovaEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void dopost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nome = request.getParameter("nome");
 		String cnpj = request.getParameter("cnpj");
 		System.out.println("Cadastrando no empresa");
@@ -31,7 +31,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 		
 		
 		PrintWriter saida = response.getWriter();
-		saida.println("<html><body>Empresa " + nome + " cnpj " + cnpj + " cadastrada com sucesso!</body></html>");
+		saida.println("<html><body>Empresa " + nome + " cadastrada com sucesso!</body></html>");
 	}
 
 }

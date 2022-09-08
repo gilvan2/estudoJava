@@ -8,6 +8,23 @@ import java.util.List;
 public class BancoDados { 
 
     private static List<Empresa> lista = new ArrayList<>();
+    
+    static{
+    	
+    	Empresa alura = new Empresa();
+    	alura.setNome("Alura");
+    	Empresa caelum = new Empresa();
+    	caelum.setNome("Caelum");
+    	
+    	lista.add(caelum);
+    	lista.add(alura);
+    	
+    	/*
+    	 * Trecho estatico para simular que o banco de dados já possui essas duas empresas cadastradas
+    	 * 
+    	 * */
+    	
+    }
 
     public void adiciona(Empresa empresa) {
     	BancoDados.lista.add(empresa);
