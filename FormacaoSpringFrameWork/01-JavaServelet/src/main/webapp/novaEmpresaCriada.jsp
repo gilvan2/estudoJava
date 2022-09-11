@@ -5,4 +5,4 @@
 	</body>
 </html>
  
- <!-- Foi simplificado para usar expressão -->
+ <!-- Foi simplificado para usar expressão (expression language outra forma de escrecer código java de forma mais simples)-->
