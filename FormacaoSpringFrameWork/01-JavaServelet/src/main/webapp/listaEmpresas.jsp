@@ -15,6 +15,8 @@
     <ul>
         <c:forEach items="${empresas}" var="empresa">
             <li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/> </li>
+            
+            <a href="/gerenciador/mostraEmpresa?id=${empresa.id} ">edita</a>
             <!-- Link para remover uma empresa levando para o jsp removerEmpresa -->
             <!-- Inserido no link o atributo opcional para passar o ID junto com a url da requisição -->
             <a href="/gerenciador/removeEmpresa?id=${empresa.id} ">remove</a>

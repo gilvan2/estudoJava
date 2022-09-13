@@ -63,6 +63,16 @@ public class BancoDados {
             }
         }
     }
+    
+    public Empresa buscaEmpresaPelaId(Integer id) { 
+        for (Empresa empresa: lista) { 
+            if(empresa.getId() == id)  {
+                return empresa;
+            }
+
+        }
+        return null;
+    }
 }
 /*
  * Classe que simula um banco de dados, com atributos estáticos da classe
