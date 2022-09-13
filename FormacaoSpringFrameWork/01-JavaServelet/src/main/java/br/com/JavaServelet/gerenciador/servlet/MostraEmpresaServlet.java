@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class mostraEmpresaServlet
  */
 @WebServlet("/mostraEmpresa")
-public class mostraEmpresaServlet extends HttpServlet {
+public class MostraEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -29,6 +29,8 @@ public class mostraEmpresaServlet extends HttpServlet {
         System.out.println(empresa.getNome());
 		
         request.setAttribute("empresa", empresa);
+        
+        System.out.println("Antes do RequestDispatcher");
 
         RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
         rd.forward(request, response);
