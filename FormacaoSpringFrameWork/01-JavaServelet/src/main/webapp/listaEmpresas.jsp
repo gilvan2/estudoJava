@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%//A notaçãp @ indica q será feito uma importação %>    
-<%@ page import="java.util.List, br.com.JavaServelet.gerenciador.servlet.Empresa"%>
+<%@ page import="java.util.List, br.com.JavaServelet.gerenciador.modelo.Empresa"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -16,10 +16,10 @@
         <c:forEach items="${empresas}" var="empresa">
             <li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/> </li>
             
-            <a href="/gerenciador/mostraEmpresa?id=${empresa.id} ">edita</a>
+            <a href="/gerenciador/entrada?acao=MostraEmpresa&id=${empresa.id} ">edita</a>
             <!-- Link para remover uma empresa levando para o jsp removerEmpresa -->
             <!-- Inserido no link o atributo opcional para passar o ID junto com a url da requisição -->
-            <a href="/gerenciador/removeEmpresa?id=${empresa.id} ">remove</a>
+            <a href="/gerenciador/entrada?acao=RemoveEmpresa&id=${empresa.id} ">remove</a>
         </c:forEach>
     </ul>
 	</body>

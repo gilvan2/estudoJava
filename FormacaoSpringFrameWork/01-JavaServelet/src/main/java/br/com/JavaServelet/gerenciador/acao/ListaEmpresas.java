@@ -22,7 +22,11 @@ public class ListaEmpresas {
 		BancoDados banco = new BancoDados();
 		List<Empresa> lista = banco.getEmpresas();
 		
+		//Atribuir um atributo a requisição
+		request.setAttribute("empresas", lista);
+		//Preparar a request para o endereço do JSP
 		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
-        rd.forward(request, response);	
+		//Despachar a requisição
+		rd.forward(request,response);	
 	}
 }
