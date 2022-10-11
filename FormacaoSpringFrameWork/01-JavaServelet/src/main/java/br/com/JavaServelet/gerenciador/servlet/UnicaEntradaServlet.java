@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.JavaServelet.gerenciador.acao.Acao;
 import br.com.JavaServelet.gerenciador.acao.AlteraEmpresa;
 import br.com.JavaServelet.gerenciador.acao.ListaEmpresas;
 import br.com.JavaServelet.gerenciador.acao.MostraEmpresa;
@@ -24,26 +25,16 @@ public class UnicaEntradaServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String paramAcao = request.getParameter("acao");
-		String nome = null;
+		String nomeDaClasse = "br.com.JavaServelet.gerenciador.acao." + paramAcao;
 		
-		if(paramAcao.equals("ListaEmpresas")) {
-			ListaEmpresas acao = new ListaEmpresas();
+		String nome;
+		try {
+			Class classe = Class.forName(nomeDaClasse);//Carrega a classe com o nome 
+			Acao acao = (Acao) classe.newInstance();
 			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("RemoveEmpresa")) {
-			RemoveEmpresa acao = new RemoveEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("MostraEmpresa")) {
-			MostraEmpresa acao =  new MostraEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("AlteraEmpresa")) {
-			AlteraEmpresa acao =  new AlteraEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("NovaEmpresa")) {
-			NovaEmpresa acao =  new NovaEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("NovaEmpresaForm")) {
-			NovaEmpresaForm acao =  new NovaEmpresaForm();
-			nome = acao.executa(request, response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException
+				| IOException e) {
+			throw new ServletException(e);
 		}
 		
 		String[] tipoEEndereco = nome.split(":");
@@ -55,5 +46,6 @@ public class UnicaEntradaServlet extends HttpServlet {
 			response.sendRedirect(tipoEEndereco[1]);
 			//É enviado ao navegador e uma nova req é feita 
 		}
+
 	}
 }
