@@ -12,7 +12,7 @@ import br.com.JavaServelet.gerenciador.modelo.Empresa;
 
 public class MostraEmpresa {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response ) throws IOException, ServletException {
+	public String executa(HttpServletRequest request, HttpServletResponse response ) throws IOException, ServletException {
 		
 		System.out.println("Mostrando dados da empresa pela classe MostraEmpresa");
 		
@@ -29,8 +29,7 @@ public class MostraEmpresa {
         
         System.out.println("Antes do RequestDispatcher");
 
-        RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-        rd.forward(request, response);
+        return "forward:formAlteraEmpresa.jsp";
 		
 	}
 

@@ -9,7 +9,7 @@ import br.com.JavaServelet.gerenciador.modelo.BancoDados;
 
 public class RemoveEmpresa {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response ) throws IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response ) throws IOException {
 		
 		System.out.println("Removendo empresas pela classe RemoveEmpresa");
 		
@@ -21,7 +21,7 @@ public class RemoveEmpresa {
 		BancoDados banco = new BancoDados();
 		banco.removeEmpresa(id);
 		
-		response.sendRedirect("entrada?acao=ListaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
 		
 	}
 

@@ -15,7 +15,7 @@ import br.com.JavaServelet.gerenciador.modelo.Empresa;
 
 public class ListaEmpresas {
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("Listando empresas pela classe ListaEmpresas");
 		
@@ -24,9 +24,8 @@ public class ListaEmpresas {
 		
 		//Atribuir um atributo a requisição
 		request.setAttribute("empresas", lista);
-		//Preparar a request para o endereço do JSP
-		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas.jsp");
-		//Despachar a requisição
-		rd.forward(request,response);	
+		//Preparar a request para o endereço do JSP	
+		
+		return "forward:listaEmpresas.jsp";
 	}
 }
