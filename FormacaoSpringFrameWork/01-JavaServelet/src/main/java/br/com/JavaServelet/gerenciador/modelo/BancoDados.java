@@ -9,6 +9,7 @@ import java.util.List;
 public class BancoDados { 
 
     private static List<Empresa> lista = new ArrayList<>();
+    private static List<Usuario> listaUsuarios = new ArrayList<>();
     //Atributo q serve como um auto incremento para o modelo
     private static Integer chaveSequencial = 1;
     
@@ -25,6 +26,18 @@ public class BancoDados {
     	lista.add(caelum);
     	lista.add(alura);
     	
+    	
+    	Usuario u1 = new Usuario();
+    	u1.setLogin("gilvan");
+    	u1.setSenha("12345");
+    	
+    	Usuario u2 = new Usuario();
+    	u2.setLogin("lindi");
+    	u2.setSenha("12345");
+    	
+    	listaUsuarios.add(u1);
+    	listaUsuarios.add(u2);
+    			
     	/*
     	 * Trecho estatico para simular que o banco de dados já possui essas duas empresas cadastradas
     	 * 

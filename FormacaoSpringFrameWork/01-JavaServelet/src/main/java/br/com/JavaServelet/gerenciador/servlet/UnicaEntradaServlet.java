@@ -10,12 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.JavaServelet.gerenciador.acao.Acao;
-import br.com.JavaServelet.gerenciador.acao.AlteraEmpresa;
-import br.com.JavaServelet.gerenciador.acao.ListaEmpresas;
-import br.com.JavaServelet.gerenciador.acao.MostraEmpresa;
-import br.com.JavaServelet.gerenciador.acao.NovaEmpresa;
-import br.com.JavaServelet.gerenciador.acao.NovaEmpresaForm;
-import br.com.JavaServelet.gerenciador.acao.RemoveEmpresa;
 
 
 @WebServlet("/entrada")
