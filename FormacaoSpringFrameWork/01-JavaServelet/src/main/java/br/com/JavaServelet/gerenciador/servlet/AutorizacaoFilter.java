@@ -22,6 +22,8 @@ public class AutorizacaoFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 
+		System.out.println("AutorizacaoFilter");
+		
 		//HttpServletRequest é um objeto mais especifico de uma interface ServletRequest ou seja HttpServletRequest é um ServletRequest e posso fazer casr entre eles   
 		
 		HttpServletRequest request = ( HttpServletRequest ) servletRequest; //Cast de um objet generico para mais um mais complexo do mesmo tipo
@@ -43,3 +45,10 @@ public class AutorizacaoFilter extends HttpFilter implements Filter {
 
 
 }
+
+
+/*
+ * Quando se usa anotaçãoes, não temos controle sobre a ordem de chamada o conteiner que decide isso, 
+ * para ajustar essa ordem, o aquivo web.xml precisa ser ajustado
+ * 
+ * */
