@@ -25,19 +25,25 @@ public class EmpresasService extends HttpServlet {
 		
 		List<Empresa> empresas = new BancoDados().getEmpresas();
 		
-		XStream xstream = new XStream();
-		xstream.alias("Empresa", Empresa.class);
-		String xml = xstream.toXML(empresas);
-		
-		response.setContentType("application/xml");
-		response.getWriter().print(xml);
-		
-		/*
-		 * Gson gson = new Gson(); String json = gson.toJson(empresas);
-		 * 
-		 * response.setContentType("application/json");
-		 * response.getWriter().print(json);
-		 */
+		String tipoRetorno = request.getHeader("Accept");
+	/*Através do Heard/accept da requisição, sabemos que tipo de documento retorna xml, json ou uma mensagem de sem conteúdo*/	
+		if(tipoRetorno.contains("xml")) {//Fazendo a busca com contains
+			XStream xstream = new XStream();
+			xstream.alias("Empresa", Empresa.class);
+			String xml = xstream.toXML(empresas);
+			
+			response.setContentType("application/xml");
+			response.getWriter().print(xml);
+		}else if (tipoRetorno.endsWith("json")) {//Fazendo a busca com endsWith
+			
+			  Gson gson = new Gson(); String json = gson.toJson(empresas);
+			  
+			  response.setContentType("application/json");
+			  response.getWriter().print(json);
+			 
+		}else {
+			response.setContentType("application/json");
+			  response.getWriter().print("{'message':'no content'}");
+		}
 	}
-
 }
