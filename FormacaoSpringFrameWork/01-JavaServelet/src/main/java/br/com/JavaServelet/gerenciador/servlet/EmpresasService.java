@@ -28,6 +28,7 @@ public class EmpresasService extends HttpServlet {
 		String tipoRetorno = request.getHeader("Accept");
 	/*Através do Heard/accept da requisição, sabemos que tipo de documento retorna xml, json ou uma mensagem de sem conteúdo*/	
 		if(tipoRetorno.contains("xml")) {//Fazendo a busca com contains
+			System.out.println("XML");
 			XStream xstream = new XStream();
 			xstream.alias("Empresa", Empresa.class);
 			String xml = xstream.toXML(empresas);
@@ -35,6 +36,7 @@ public class EmpresasService extends HttpServlet {
 			response.setContentType("application/xml");
 			response.getWriter().print(xml);
 		}else if (tipoRetorno.endsWith("json")) {//Fazendo a busca com endsWith
+			System.out.println("JSON");
 			
 			  Gson gson = new Gson(); String json = gson.toJson(empresas);
 			  
