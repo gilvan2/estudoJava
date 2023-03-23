@@ -11,22 +11,43 @@ public class TestaInsercaoComParametros {
 
 	public static void main(String[] args) throws SQLException {
 		
-		String nome = "MOUSE'";
-		String descricao = "MOUSE SEM FIO);DELET * FROM PRODUTO";
+		//String nome = "MOUSE'";
+		///String descricao = "MOUSE SEM FIO);DELET * FROM PRODUTO";
 		
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		
 		Connection con = connectionFactory.recuperarConexao();
 		
-		String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)";
+		//Nesse momento, comecei a controlar a transação, eu digo qunado ela começa e obrigatoriamente preciso dizer quando a transação termina
+		//Caso contrário, os valores não serão salvos no banco quando a conexão for fechada
+		con.setAutoCommit(false);
 		
-		//Agoera, ao inves de receber um statement, ele prepara um statement e deixa a responsabilidade da escrita do sql para o java
-		PreparedStatement stm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		try {
 		
-		insereProduto(nome, descricao, con, stm);
+			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)";
+			
+			//Agoera, ao inves de receber um statement, ele prepara um statement e deixa a responsabilidade da escrita do sql para o java
+			PreparedStatement stm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+			insereProduto("SmartTv", "45 polegadas", stm);
+			
+			insereProduto("Radio", "Radio de bateria", stm);
+			
+			con.commit();
+			
+			stm.close();
+			
+			con.close();
+			
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+			System.out.println("ROLLBACK EXECUTADO");
+			con.rollback();
+		}
 	}
-
-	private static void insereProduto(String nome, String descricao, Connection con, PreparedStatement stm)
+//Alt + Shift + M (Transforma o trecho selecionade em um método (eclipse shrtcut))
+	private static void insereProduto(String nome, String descricao, PreparedStatement stm)
 			throws SQLException {
 		stm.setString(1, nome);
 		stm.setString(2, descricao);
@@ -41,7 +62,5 @@ public class TestaInsercaoComParametros {
 			
 			System.out.println("O ID " + id + " foi criado nessa transação");
 		}
-		
-		con.close();
 	}
 }
