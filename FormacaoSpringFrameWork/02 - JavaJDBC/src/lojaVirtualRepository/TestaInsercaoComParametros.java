@@ -36,5 +36,7 @@ public class TestaInsercaoComParametros {
 			
 			System.out.println("O ID " + id + " foi criado nessa transação");
 		}
+		
+		con.close();
 	}
 }

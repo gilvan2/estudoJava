@@ -1,25 +1,30 @@
 package lojaVirtualRepository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestaRemocao {
 
 	public static void main(String[] args) throws SQLException {
 		
+		Integer id = 2;
+		
 		ConnectionFactory connectionFacture = new ConnectionFactory();
 		
 		Connection con  = connectionFacture.recuperarConexao();
 		
-		Statement stm = con.createStatement();
+		PreparedStatement stm = con.prepareStatement("DELETE FROM PRODUTO WHERE ID < ? ");
 		
-		stm.execute("DELET FROM PRODUTOS WHERE ID < 2 ");
+		stm.setInt(1, id);
+		
+		stm.execute();
 		
 		Integer linhasModificadas =  stm.getUpdateCount();
 		
 		System.out.println("Quantidade de linhas que foram modificadas " + linhasModificadas);
+		
+		con.close();
 
 	}
-
 }

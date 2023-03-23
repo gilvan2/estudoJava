@@ -1,9 +1,9 @@
 package lojaVirtualRepository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestaInsercao {
 
@@ -12,9 +12,9 @@ public class TestaInsercao {
 		
 		Connection con = connectionFactory.recuperarConexao();
 		
-		Statement stm = con.createStatement();
+		PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES ('MOUSE','MOUSE SEM FION')", PreparedStatement.RETURN_GENERATED_KEYS);
 		
-		stm.execute("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES ('MOUSE','MOUSE SEM FION')", Statement.RETURN_GENERATED_KEYS);
+		stm.execute();
 		
 		ResultSet rts =  stm.getGeneratedKeys();
 		
@@ -24,5 +24,7 @@ public class TestaInsercao {
 			
 			System.out.println("O ID " + id + " foi criado nessa transação");
 		}
+		
+		con.close();
 	}
 }

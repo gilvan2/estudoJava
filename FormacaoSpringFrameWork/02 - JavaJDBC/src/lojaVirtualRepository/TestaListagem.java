@@ -1,6 +1,7 @@
 package lojaVirtualRepository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,9 +14,9 @@ public class TestaListagem {
 		
 		Connection con = connectionFactory.recuperarConexao();
 		
-		Statement stm =  con.createStatement();
+		PreparedStatement stm =  con.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
 		
-		boolean resultado = stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");//Execute retorna true e esse resultado for uma lista, se for um update delet (opera~çoes que não retornam lista) ele será falso
+		stm.execute();//Execute retorna true e esse resultado for uma lista, se for um update delet (opera~çoes que não retornam lista) ele será falso
 		
 		//Para pegar os resultados desse stm, usamos
 		
@@ -33,7 +34,6 @@ public class TestaListagem {
 		}
 		
 		con.close();
-
 	}
 
 }
