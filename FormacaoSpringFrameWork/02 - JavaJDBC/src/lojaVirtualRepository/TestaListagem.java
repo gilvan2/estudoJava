@@ -14,23 +14,27 @@ public class TestaListagem {
 		
 		Connection con = connectionFactory.recuperarConexao();
 		
-		PreparedStatement stm =  con.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
-		
-		stm.execute();//Execute retorna true e esse resultado for uma lista, se for um update delet (opera~çoes que não retornam lista) ele será falso
-		
-		//Para pegar os resultados desse stm, usamos
-		
-		ResultSet rst = stm.getResultSet();
-		
-		while (rst.next()) {
-			Integer id = rst.getInt("ID");
-			System.out.println(id);
+		try (PreparedStatement stm =  con.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO")){
 			
-			String nome = rst.getString("NOME");
-			System.out.println(nome);
+			stm.execute();//Execute retorna true e esse resultado for uma lista, se for um update delet (opera~çoes que não retornam lista) ele será falso
 			
-			String descricao = rst.getString("DESCRICAO");
-			System.out.println(descricao);
+			//Para pegar os resultados desse stm, usamos
+			
+			ResultSet rst = stm.getResultSet();
+			
+			while (rst.next()) {
+				Integer id = rst.getInt("ID");
+				System.out.println(id);
+				
+				String nome = rst.getString("NOME");
+				System.out.println(nome);
+				
+				String descricao = rst.getString("DESCRICAO");
+				System.out.println(descricao);
+			}			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("NÃO FOI POSSIVEL OBTER A LISTAGEM DE PRODUTOS");
 		}
 		
 		con.close();

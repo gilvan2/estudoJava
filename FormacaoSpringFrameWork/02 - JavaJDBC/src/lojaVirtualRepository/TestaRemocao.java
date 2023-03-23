@@ -14,17 +14,19 @@ public class TestaRemocao {
 		
 		Connection con  = connectionFacture.recuperarConexao();
 		
-		PreparedStatement stm = con.prepareStatement("DELETE FROM PRODUTO WHERE ID < ? ");
+		try(PreparedStatement stm = con.prepareStatement("DELETE FROM PRODUTO WHERE ID < ? ")){
 		
-		stm.setInt(1, id);
-		
-		stm.execute();
-		
-		Integer linhasModificadas =  stm.getUpdateCount();
-		
-		System.out.println("Quantidade de linhas que foram modificadas " + linhasModificadas);
-		
+			stm.setInt(1, id);
+			
+			stm.execute();
+			
+			Integer linhasModificadas =  stm.getUpdateCount();
+			
+			System.out.println("Quantidade de linhas que foram modificadas " + linhasModificadas);
+		} catch (Exception e){
+			e.printStackTrace();
+			System.out.println("NÃO FOI POSSIVEL DELETAR O PRODUTO COM ID " + id);
+		}
 		con.close();
-
 	}
 }

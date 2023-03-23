@@ -12,17 +12,20 @@ public class TestaInsercao {
 		
 		Connection con = connectionFactory.recuperarConexao();
 		
-		PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES ('MOUSE','MOUSE SEM FION')", PreparedStatement.RETURN_GENERATED_KEYS);
-		
-		stm.execute();
-		
-		ResultSet rts =  stm.getGeneratedKeys();
-		
-		while(rts.next()) {
-
-			Integer id = rts.getInt(1);
+		try(PreparedStatement stm = con.prepareStatement("INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES ('MOUSE','MOUSE SEM FION')", PreparedStatement.RETURN_GENERATED_KEYS)){
+			stm.execute();
 			
-			System.out.println("O ID " + id + " foi criado nessa transação");
+			ResultSet rts =  stm.getGeneratedKeys();
+			
+			while(rts.next()) {
+
+				Integer id = rts.getInt(1);
+				
+				System.out.println("O ID " + id + " foi criado nessa transação");
+			}			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("NÃO FOI POSSIVEL ISERIR O PRODUTO");
 		}
 		
 		con.close();
