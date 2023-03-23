@@ -23,6 +23,11 @@ public class TestaInsercaoComParametros {
 		//Agoera, ao inves de receber um statement, ele prepara um statement e deixa a responsabilidade da escrita do sql para o java
 		PreparedStatement stm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		
+		insereProduto(nome, descricao, con, stm);
+	}
+
+	private static void insereProduto(String nome, String descricao, Connection con, PreparedStatement stm)
+			throws SQLException {
 		stm.setString(1, nome);
 		stm.setString(2, descricao);
 		
