@@ -1,4 +1,4 @@
-package lojaVirtualRepository;
+package br.com.estudo.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
