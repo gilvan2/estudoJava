@@ -22,21 +22,19 @@ public class TestaInsercaoComParametros {
 		//Caso contrário, os valores não serão salvos no banco quando a conexão for fechada
 		con.setAutoCommit(false);
 		
-		try {
-		
-			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)";
+		String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)";
+		//Agoera, ao inves de receber um statement, ele prepara um statement e deixa a responsabilidade da escrita do sql para o java
+		//colocando o prepareStatement, eu não vou preicisar explicitar o fechamento do mesmo
+		try (PreparedStatement stm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);){
 			
-			//Agoera, ao inves de receber um statement, ele prepara um statement e deixa a responsabilidade da escrita do sql para o java
-			PreparedStatement stm = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+			
 			
 			insereProduto("SmartTv", "45 polegadas", stm);
 			
 			insereProduto("Radio", "Radio de bateria", stm);
 			
 			con.commit();
-			
-			stm.close();
-			
 			con.close();
 			
 		} catch (Exception e) {
