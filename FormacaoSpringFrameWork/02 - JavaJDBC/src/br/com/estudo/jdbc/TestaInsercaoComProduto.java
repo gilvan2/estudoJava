@@ -4,9 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.com.estudo.jdbc.DAO.ProdutoDAO;
 import br.com.estudo.jdbc.modelo.Produto;
 
-public class TestaInsercaoComproduto {
+public class TestaInsercaoComProduto {
 
 	public static void main(String[] args) throws SQLException {
 		
@@ -16,20 +17,10 @@ public class TestaInsercaoComproduto {
 		
 		try(Connection con = connectionFactory.recuperarConexao()){
 			
-			String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?,?)";
-			
-			try(PreparedStatement pstm = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
-				pstm.setString(1, comoda.getNome());
-				pstm.setString(2, comoda.getDescricao());
-				
-				pstm.execute();
-				
-				try(ResultSet rst = pstm.getGeneratedKeys()){
-					while(rst.next()) {
-						comoda.setId(rst.getInt(1));
-					}
-				}
-			}
+			ProdutoDAO produtoDAO = new ProdutoDAO(con);
+			//new PersistenciaProduto(con).salvarProduto(comoda);
+			produtoDAO.salvar(comoda);
+			//persistenciaProduto.listar();
 			
 			System.out.println(comoda);
 		}
