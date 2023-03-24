@@ -21,6 +21,9 @@ public class ConnectionFactory {
 		comboPooledDataSource.setUser("root");
 		comboPooledDataSource.setPassword("root");
 		
+		//Abre até 15 conexões concorrentes no banco de dados 
+		comboPooledDataSource.setMaxPoolSize(15);
+		
 		this.dataSource = comboPooledDataSource;
 		
 	}
