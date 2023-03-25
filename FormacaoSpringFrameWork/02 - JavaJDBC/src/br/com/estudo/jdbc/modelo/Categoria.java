@@ -9,9 +9,18 @@ public class Categoria {
 		this.id = id;
 		this.nome = nome;
 	}
+
+	public String getNome() {
+		
+		return this.nome;
+	}
+
+	public int getId() {
+		return this.id;
+	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return String.format("Categorias cadastradas: ID: %d, Nome: %s", this.id, this.nome);
-	}
+	}*/
 }

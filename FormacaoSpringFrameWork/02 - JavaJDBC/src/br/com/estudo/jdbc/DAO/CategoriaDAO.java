@@ -23,6 +23,7 @@ public class CategoriaDAO {
 		
 		List<Categoria> categorias = new ArrayList<Categoria>();
 		
+		System.out.println("EXECUTANDO A QUERY DE BUSCAR CATEGORIA");
 		String sql = "SELECT ID, NOME FROM CATEGORIA";
 		
 		try(PreparedStatement pstm = connection.prepareStatement(sql)){
