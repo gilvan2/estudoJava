@@ -99,13 +99,15 @@ public class ProdutoDAO {
 		}
 	}
 
-	public void alterar(String nome, String descricao, Integer id) throws SQLException {
+	public void alterar(String nome, String descricao, Integer id) {
 		try (PreparedStatement stm = connection
 				.prepareStatement("UPDATE PRODUTO P SET P.NOME = ?, P.DESCRICAO = ? WHERE ID = ?")) {
 			stm.setString(1, nome);
 			stm.setString(2, descricao);
 			stm.setInt(3, id);
 			stm.execute();
+		}catch(SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 

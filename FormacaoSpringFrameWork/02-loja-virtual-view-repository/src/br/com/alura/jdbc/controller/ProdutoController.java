@@ -32,6 +32,6 @@ public class ProdutoController {
 	}
 
 	public void alterar(String nome, String descricao, Integer id) {
-		System.out.println("Alterando produto");
+		this.produtoDAO.alterar(nome, descricao, id);
 	}
 }
