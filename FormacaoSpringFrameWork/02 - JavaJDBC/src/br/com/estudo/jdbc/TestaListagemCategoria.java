@@ -26,7 +26,6 @@ public class TestaListagemCategoria {
 					for(Produto produto : lc.getProdutos()) {
 						System.out.println(lc.getNome() + " - " + produto.getNome());
 					}
-				
 				});
 		}
 	}
