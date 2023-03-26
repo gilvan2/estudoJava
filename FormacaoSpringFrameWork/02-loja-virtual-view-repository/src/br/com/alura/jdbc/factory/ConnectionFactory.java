@@ -20,7 +20,13 @@ public class ConnectionFactory {
 		this.dataSource = comboPooledDataSource;
 	}
 
-	public Connection recuperarConexao() throws SQLException {
-		return this.dataSource.getConnection();
+	public Connection recuperarConexao() {
+	//Tratamenot da SQLException	
+		try {
+			return this.dataSource.getConnection();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 }
