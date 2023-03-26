@@ -42,7 +42,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		this.produtoController = new ProdutoController();
 
 		labelNome = new JLabel("Nome do Produto");
-		labelDescricao = new JLabel("Descri��o do Produto");
+		labelDescricao = new JLabel("Descrição do Produto");
 		labelCategoria = new JLabel("Categoria do Produto");
 
 		labelNome.setBounds(10, 10, 240, 15);
@@ -196,7 +196,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 			JOptionPane.showMessageDialog(this, "Salvo com sucesso!");
 			this.limpar();
 		} else {
-			JOptionPane.showMessageDialog(this, "Nome e Descri��o devem ser informados.");
+			JOptionPane.showMessageDialog(this, "Nome e Descrição devem ser informados.");
 		}
 	}
 
