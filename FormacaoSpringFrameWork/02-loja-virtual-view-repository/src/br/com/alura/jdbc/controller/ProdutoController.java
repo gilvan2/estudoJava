@@ -19,11 +19,11 @@ public class ProdutoController {
 	}
 
 	public void deletar(Integer id) {
-		System.out.println("Deletando produto");
+		this.produtoDAO.deletar(id);
 	}
 
 	public void salvar(Produto produto) {
-		System.out.println("Salvando produto");
+		this.produtoDAO.salvar(produto);
 	}
 
 	public List<Produto> listar() {

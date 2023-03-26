@@ -19,7 +19,7 @@ public class ProdutoDAO {
 		this.connection = connection;
 	}
 
-	public void salvar(Produto produto) throws SQLException {
+	public void salvar(Produto produto) {
 		String sql = "INSERT INTO PRODUTO (NOME, DESCRICAO) VALUES (?, ?)";
 
 		try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -34,6 +34,8 @@ public class ProdutoDAO {
 					produto.setId(rst.getInt(1));
 				}
 			}
+		}catch (SQLException e) {
+			throw new RuntimeException();
 		}
 	}
 
@@ -87,10 +89,13 @@ public class ProdutoDAO {
 		return produtos;
 	}
 
-	public void deletar(Integer id) throws SQLException {
+	public void deletar(Integer id) {
+		
 		try (PreparedStatement stm = connection.prepareStatement("DELETE FROM PRODUTO WHERE ID = ?")) {
 			stm.setInt(1, id);
 			stm.execute();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
