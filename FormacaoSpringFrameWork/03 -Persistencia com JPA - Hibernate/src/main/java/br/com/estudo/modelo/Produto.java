@@ -10,15 +10,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Table(name="produtos")
 public class Produto {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	@Table(name = "produtos")
 	private Long id;
 	private String nome;
 	private String descricao;
 	private BigDecimal preco;
 	
 	//Caso o nome do campo seja diferente do que esta na aentidade, usar a anootação column com o nome do campo no banco de dados
+	//Para projetos em hibernate, não precisamos indicar o path da classe no persistence.xml
+	//<class>br.com.alura.loja.modelo.Produto</class>
+	
+	
 
 }
