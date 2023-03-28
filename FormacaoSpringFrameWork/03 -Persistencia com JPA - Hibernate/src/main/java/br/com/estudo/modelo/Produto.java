@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +23,8 @@ public class Produto {
 	private String descricao;
 	private BigDecimal preco;
 	private LocalDate dataCadastro = LocalDate.now();
-	@Enumerated(EnumType.STRING)
+	//Vc é obrigado a dizer a cardinalidade entre as tabelas, por padrão o java não lança nada
+	@ManyToOne
 	private Categoria categoria;
 	
 	public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
