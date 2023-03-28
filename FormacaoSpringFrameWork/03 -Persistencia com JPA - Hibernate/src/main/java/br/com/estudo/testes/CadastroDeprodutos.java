@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import br.com.estudo.dao.ProdutoDao;
 import br.com.estudo.modelo.Produto;
+import br.com.estudo.util.JPAUtil;
 
 public class CadastroDeprodutos {
 
@@ -16,19 +18,16 @@ public class CadastroDeprodutos {
 		celular.setNome("Xiaomi Redmi");
 		celular.setDescricao("Muito legak");
 		celular.setPreco(new BigDecimal("800"));
+
+		EntityManager em = JPAUtil.getEntityManager();
 		
-		
-		/**
-		 * Para se criar uma conexão com o banco de dados, precisamos implementar uma interface e usar o método descrito embaixo para buscar o nome da
-		 * entidade cadastrada no persistence-unit presente no arquivo persistence.xml*/
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("loja");
-		
-		EntityManager em = factory.createEntityManager();
-		
+		//Perceba que eu não deixei a criação do em no dao, já passo a conexão feita para ela, com isso eu desacoplo a dao do banco de dados
+		ProdutoDao dao = new ProdutoDao(em);
 		//Pelo fato do nosso controle de transação sem RESOURCE_LOCAL, obrigatóriamente indicamos quando a trnsação começa e quando termina
 		
 		em.getTransaction().begin();
-		em.persist(celular);
+		//em.persist(celular);
+		dao.cadastrar(celular);
 		em.getTransaction().commit();
 		em.close();
 
