@@ -2,12 +2,14 @@ package br.com.estudo.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +24,9 @@ public class Pedido {
 
 	@ManyToOne
 	private Cliente cliente;
+	
+	@OneToMany
+	private List<ItemPedido> itens;
 
 	public Pedido(Cliente cliente) {
 		super();
@@ -40,11 +45,11 @@ public class Pedido {
 	}
 
 	public BigDecimal getValor_total() {
-		return valor_total;
+		return valorTotal;
 	}
 
 	public void setValor_total(BigDecimal valor_total) {
-		this.valor_total = valor_total;
+		this.valorTotal = valor_total;
 	}
 
 	public LocalDate getData() {
