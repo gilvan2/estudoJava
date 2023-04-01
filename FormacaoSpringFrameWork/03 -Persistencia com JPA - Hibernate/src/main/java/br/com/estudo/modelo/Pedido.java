@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,13 +22,14 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name = "valor_total")//Transformando o nome da coluna no memso nome da coluna que esta no banco de dados
 	private BigDecimal valorTotal;
 	private LocalDate data = LocalDate.now();
 
 	@ManyToOne
 	private Cliente cliente;
 	//Mapeamento biderecioanl, flag para evitar criação de tabela desnecessaria
-	@OneToMany(mappedBy = "pedido")
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // cascade informa pra JPA que desejamos realizar a persistencia desse relacionamento estrangeiro junto com a entidade pedido
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	public Pedido(Cliente cliente) {
