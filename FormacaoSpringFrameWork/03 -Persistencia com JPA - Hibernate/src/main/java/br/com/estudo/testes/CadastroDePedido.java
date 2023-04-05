@@ -1,6 +1,7 @@
 package br.com.estudo.testes;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -38,6 +39,15 @@ public class CadastroDePedido {
 		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
 		
 		System.out.println("VALOR TOTAL: " + totalVendido);
+		
+		
+		List<Object[]> relatorioDeVendas = pedidoDao.relatorioDeVendas();
+		
+		for (Object[] objects : relatorioDeVendas) {
+			System.out.println(objects[0]);
+			System.out.println(objects[1]);
+			System.out.println(objects[2]);
+		}
 
 	}
 
