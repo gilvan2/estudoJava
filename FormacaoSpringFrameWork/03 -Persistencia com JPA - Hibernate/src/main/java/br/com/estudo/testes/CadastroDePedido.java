@@ -15,6 +15,7 @@ import br.com.estudo.modelo.ItemPedido;
 import br.com.estudo.modelo.Pedido;
 import br.com.estudo.modelo.Produto;
 import br.com.estudo.util.JPAUtil;
+import br.com.estudo.vo.RelatorioDeVendasVo;
 
 public class CadastroDePedido {
 
@@ -41,13 +42,9 @@ public class CadastroDePedido {
 		System.out.println("VALOR TOTAL: " + totalVendido);
 		
 		
-		List<Object[]> relatorioDeVendas = pedidoDao.relatorioDeVendas();
+		List<RelatorioDeVendasVo> relatorioDeVendas = pedidoDao.relatorioDeVendas();
 		
-		for (Object[] objects : relatorioDeVendas) {
-			System.out.println(objects[0]);
-			System.out.println(objects[1]);
-			System.out.println(objects[2]);
-		}
+		relatorioDeVendas.forEach(System.out::println);
 
 	}
 

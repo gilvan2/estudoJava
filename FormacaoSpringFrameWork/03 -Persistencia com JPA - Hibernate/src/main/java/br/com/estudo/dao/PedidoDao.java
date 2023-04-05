@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import br.com.estudo.modelo.Pedido;
 import br.com.estudo.modelo.Produto;
+import br.com.estudo.vo.RelatorioDeVendasVo;
 
 public class PedidoDao {
 	
@@ -25,17 +26,19 @@ public class PedidoDao {
 		return em.createQuery(jpql, BigDecimal.class).getSingleResult();
 	}
 	
-	public List<Object[]> relatorioDeVendas(){
-		String jpql = "SELECT produto.nome "
+	public List<RelatorioDeVendasVo> relatorioDeVendas(){
+		//Aplicando o new total path da classe, a JPA vai entender que isso não é uma entidade e vai criar uma instancia de objetos para o relatório
+		String jpql = "SELECT new br.com.estudo.vo.RelatorioDeVendasVo("
+				+ "produto.nome "
 				+ ",SUM(item.quantidade) "
-				+ ",MAX(pedido.data) "
+				+ ",MAX(pedido.data)) "
 				+ "FROM Pedido pedido "
 				+ "JOIN pedido.itens item "
 				+ "JOIN item.produto produto "
 				+ "GROUP BY produto.nome "
 				+ "ORDER BY item.quantidade DESC";
 		
-		return em.createQuery(jpql, Object[].class).getResultList();
+		return em.createQuery(jpql, RelatorioDeVendasVo.class).getResultList();
 				
 	}
 }
