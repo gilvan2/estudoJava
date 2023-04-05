@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,10 +26,12 @@ public class Pedido {
 	@Column(name = "valor_total")//Transformando o nome da coluna no memso nome da coluna que esta no banco de dados
 	private BigDecimal valorTotal = BigDecimal.ZERO;
 	private LocalDate data = LocalDate.now();
-
-	@ManyToOne
+	
+	//Para relacionamentos xxxToOne, a JPA sempre ira criar os joins para carregar os registros também desse relacionamento default eaguer
+	@ManyToOne(fetch = FetchType.LAZY) //Boa pratica, em carregamento toOne, mudar para carrgeamento LAZY
 	private Cliente cliente;
 	//Mapeamento biderecioanl, flag para evitar criação de tabela desnecessaria
+	//Relacionamento xxxToMany é lazzy 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // cascade informa pra JPA que desejamos realizar a persistencia desse relacionamento estrangeiro junto com a entidade pedido
 	private List<ItemPedido> itens = new ArrayList<>();
 
@@ -77,6 +80,10 @@ public class Pedido {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public List<ItemPedido> getItens() {
+		return itens;
 	}
 
 }
