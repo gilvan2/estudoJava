@@ -22,8 +22,13 @@ public class PerformanceConsultas {
 		EntityManager em = JPAUtil.getEntityManager();
 		
 		//Primeiro teste,
-		Pedido pedido = em.find(Pedido.class, 1l);
-		System.out.println(pedido.getItens().size());
+		//Pedido pedido = em.find(Pedido.class, 1l);
+		
+		PedidoDao pedidoDao = new PedidoDao(em);
+		Pedido pedido = pedidoDao.buscarPedidoComCliente(1l);//Uma vez que eu carreguei o dado da entidade cliente, o E.M pode ser fechado e o campo acessado (corrige a linha 31)
+		
+		em.close();
+		System.out.println(pedido.getCliente().getNome());//Pelo E.M ter sido fechado, aqui vai dar uma excepetion no carregamento da entidade
 
 	}
 
