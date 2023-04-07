@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import br.com.estudo.dao.CategoriaDao;
 import br.com.estudo.dao.ProdutoDao;
 import br.com.estudo.modelo.Categoria;
+import br.com.estudo.modelo.CategoriaId;
 import br.com.estudo.modelo.Produto;
 import br.com.estudo.util.JPAUtil;
 
@@ -49,6 +50,8 @@ public class CadastroDeprodutos {
 		
 		produtoDao.cadastrar(celular);
 		em.getTransaction().commit();
+		
+		em.find(Categoria.class, new CategoriaId("CELULARES","xpto"));//Exemplificando quando for usar um fundo com uma chave composta
 		em.close();
 	}
 
