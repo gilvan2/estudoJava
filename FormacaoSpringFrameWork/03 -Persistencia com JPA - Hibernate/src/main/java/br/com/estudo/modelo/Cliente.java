@@ -1,5 +1,6 @@
 package br.com.estudo.modelo;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,15 +14,16 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String cpf;
+	@Embedded //Indicando a JPA para embutir os campos da classe dados pessoais na hora de criar as consultas no banco
+	private DadosPessoais dadosPessoais;
 
 	public Cliente() {
 	}
 
 	public Cliente(String nome, String cpf) {
-		this.nome = nome;
-		this.cpf = cpf;
+		
+		//Separei em uma classe a parte com atributos agrupados, afim de organizar a minha entidade cliente e não permitir que ela se torne gigante
+		this.dadosPessoais = new DadosPessoais(nome, cpf);
 	}
 
 	public Long getId() {
@@ -32,20 +34,14 @@ public class Cliente {
 		this.id = id;
 	}
 
+	public DadosPessoais getDadosPessoais() {
+		return dadosPessoais;
+	}
+	//Method delegat - Como antes tinham uma porrada de lugares chamado o get nome, eu delegui para esse metodo chamar o getNome da classe DadosPessoais
 	public String getNome() {
-		return nome;
+		return this.dadosPessoais.getNome();
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	
+	
 
 }
