@@ -11,11 +11,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="produtos")
+//Estrategias as principais são SINGLE_TABLE(tabelão) ou JOINED (os dados comuns ficam em produtos e os especificos ficam em cada classe filha ) .
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Produto {
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
