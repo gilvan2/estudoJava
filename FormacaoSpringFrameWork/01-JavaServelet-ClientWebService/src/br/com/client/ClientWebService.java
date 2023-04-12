@@ -9,7 +9,7 @@ public class ClientWebService {
 
 	public static void main(String[] args) throws Exception {
 		String conteudo = Request.Get("http://localhost:8080/gerenciador/empresas")
-		.addHeader("Accept","application/json")
+		.addHeader("Accept", "application/json")
 		.execute()
 		.toString();
 		
