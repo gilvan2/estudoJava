@@ -1,0 +1,3 @@
+Criar infra estrutura para banco de dados 
+Criar documentação 
+Atualizar documentação pai

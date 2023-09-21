@@ -1,0 +1,1 @@
+A configuração para acesso ao banco de dados é feita pelo arquivo application.properties
