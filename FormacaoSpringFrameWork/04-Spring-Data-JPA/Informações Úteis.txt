@@ -1,1 +1,30 @@
 A configuração para acesso ao banco de dados é feita pelo arquivo application.properties
+
+Como funciona o Spring Data?
+    Spring Data 
+	|
+	v
+       JPA
+	|
+	v
+    Hibernate
+	|
+	v
+      JDBC
+	|
+	v
+      Driver
+	|
+	v
+    Data Base
+
+Todas essas abstrações já estão implementadas no Spring Data, para quem esta desenvolvendo, a camada é transparente.
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Alguns tipos de Repository no Spring Data
+-> Repository -> CRUD Repository -> PaginationAndSorting Repository -> JPA Repository 
+Cada um desses Repositorys existem para determinados propositos 
+
+
+
